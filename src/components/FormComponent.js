@@ -8,6 +8,8 @@ const FormComponent = () => {
     yearsRemaining: "",
   });
 
+  const [result, setResult] = useState(0);
+
   const handleFormSubmit = (event) => {
     event.preventDefault();
     const { retirementTarget, principal, annualReturn, yearsRemaining } =
@@ -22,9 +24,10 @@ const FormComponent = () => {
     const r = Number(annualReturn);
     const n = yearsRemaining;
 
-    let result = (y - a * Math.pow(1 + r, n)) / ((Math.pow(1 + r, n) - 1) / r);
+    let calculation =
+      (y - a * Math.pow(1 + r, n)) / ((Math.pow(1 + r, n) - 1) / r);
 
-    console.log(result);
+    setResult(calculation);
   };
 
   const handleInputChange = (event) => {
@@ -87,9 +90,14 @@ const FormComponent = () => {
         />
       </div>
 
-      <button type="submit" className="btn btn-primary m-5">
-        Submit
-      </button>
+      <div>
+        <button type="submit" className="btn btn-primary m-5">
+          Submit
+        </button>
+        <span className="h2 text-muted">
+          Ya gotta put away ${result} every year
+        </span>
+      </div>
     </form>
   );
 };
