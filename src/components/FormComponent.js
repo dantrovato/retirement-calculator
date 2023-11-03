@@ -13,7 +13,18 @@ const FormComponent = () => {
     const { retirementTarget, principal, annualReturn, yearsRemaining } =
       formData;
 
-    console.log(retirementTarget);
+    console.log("Retirement target: ", retirementTarget);
+    console.log("Principal: ", principal);
+    console.log("Annual return: ", annualReturn);
+    console.log("Years remaing: ", yearsRemaining);
+    const y = Number(retirementTarget);
+    const a = Number(principal);
+    const r = Number(annualReturn);
+    const n = yearsRemaining;
+
+    let result = (y - a * Math.pow(1 + r, n)) / ((Math.pow(1 + r, n) - 1) / r);
+
+    console.log(result);
   };
 
   const handleInputChange = (event) => {
@@ -44,6 +55,7 @@ const FormComponent = () => {
           id="principal"
           name="principal"
           aria-describedby="principal"
+          onChange={handleInputChange}
           placeholder="Enter amount"
         />
       </div>
@@ -52,10 +64,12 @@ const FormComponent = () => {
         <label htmlFor="return">Annual compounding rate</label>
         <input
           type="number"
+          step="any" // allows any floating-point number
           className="form-control"
           id="return"
-          name="return"
+          name="annualReturn"
           aria-describedby="return"
+          onChange={handleInputChange}
           placeholder="Enter percentage. If 7% enter => 0.07"
         />
       </div>
@@ -68,6 +82,7 @@ const FormComponent = () => {
           id="yearsRemaining"
           name="yearsRemaining"
           aria-describedby="yearsRemaining"
+          onChange={handleInputChange}
           placeholder="Enter percentage. If 7% enter => 0.07"
         />
       </div>
