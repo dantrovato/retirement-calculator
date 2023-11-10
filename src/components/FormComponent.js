@@ -86,7 +86,7 @@ const FormComponent = () => {
           name="yearsRemaining"
           aria-describedby="yearsRemaining"
           onChange={handleInputChange}
-          placeholder="Enter percentage. If 7% enter => 0.07"
+          placeholder="Enter the number of years before you want to retire"
         />
       </div>
 
